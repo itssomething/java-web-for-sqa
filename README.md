@@ -1,3 +1,4 @@
 # java web app for sqa
 Just a random app for sqa lah
-also all hail ruby, screw java :smile:
+
+Also all hail Ruby and screw java :smile:
