@@ -39,7 +39,7 @@ public class HomeController {
 
 		userRepo.save(user);
 		model.addAttribute("users", userRepo.findAll());
-		return "index";
+		return "users/index";
 	}
 	
 	@GetMapping("/users/{id}/edit")

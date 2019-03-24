@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{~/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" >
 </head>
 <body>
-	<form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-    <input type="submit" value="Add User">   
-</form>
+	<form action="#" th:action="@{/users/new}" th:object="${user}" method="post">
+		<label for="email">Email</label> 
+		<input type="text" th:field="*{email}" id="email" placeholder="Email"> 
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+		</span> 
+		
+	    <label for="email">Role</label>
+	    <input type="text" th:field="*{role}" id="role" placeholder="Role">
+	    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+		<input type="submit" value="Add User">
+	</form>
 </body>
 </html>
