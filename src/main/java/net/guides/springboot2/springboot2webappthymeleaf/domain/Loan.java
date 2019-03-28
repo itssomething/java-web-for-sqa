@@ -26,7 +26,7 @@ public class Loan {
 	private float remaining_principal;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id", nullable=false)
+	@JoinColumn(name="user_id", insertable = false, updatable = false)
 	private User user;
 	
 	public Loan() {}

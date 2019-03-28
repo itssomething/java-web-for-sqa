@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Home</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{~/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+</head>
+<body>
+	<div class="container">
+		<h2 th:text="#{app.title}">App Title</h2>
+		
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>User id</th>
+					<th>Current interest rate</th>
+					<th>Amount of money</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="loan : ${loans}">
+					<td th:text="${loan.id}">Id</td>
+					<td th:text="${loan.current_interest_rate}">Email</td>
+					<td th:text="${loan.amount_of_money}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

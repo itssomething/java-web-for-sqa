@@ -1,7 +1,9 @@
 package net.guides.springboot2.springboot2webappthymeleaf.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User
+public class User implements Serializable
 {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,16 +21,16 @@ public class User
 	private String email;
 	private Integer role;
 	@OneToMany(mappedBy="user")
-	private Set<Loan> loan;
+	private Set<Loan> loans;
 	
 	public User() {}
 
-	public User(Integer id, String email, Integer role, Set<Loan> loan) {
+	public User(Integer id, String email, Integer role, Set<Loan> loans) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.role = role;
-		this.loan = loan;
+		this.loans = loans;
 	}
 
 	public Integer getId() {
@@ -56,11 +58,11 @@ public class User
 	}
 
 	public Set<Loan> getLoan() {
-		return loan;
+		return loans;
 	}
 
-	public void setLoan(Set<Loan> loan) {
-		this.loan = loan;
+	public void setLoan(Set<Loan> loans) {
+		this.loans = loans;
 	}
 	
 	
