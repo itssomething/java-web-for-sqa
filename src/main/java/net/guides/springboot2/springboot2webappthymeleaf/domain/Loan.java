@@ -1,6 +1,7 @@
 package net.guides.springboot2.springboot2webappthymeleaf.domain;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -82,7 +83,21 @@ public class Loan {
 	public float getAmount_of_money() {
 		return amount_of_money;
 	}
-
+	
+	public String getStringAmountOfMoney() {
+		DecimalFormat df = new DecimalFormat("#");
+		df.setMaximumFractionDigits(12);
+		
+		return df.format(amount_of_money);
+	}
+	
+	public String getStringRemainingPrincipal() {
+		DecimalFormat df = new DecimalFormat("#");
+		df.setMaximumFractionDigits(12);
+		
+		return df.format(remaining_principal);
+	}
+	
 	public void setAmount_of_money(float amount_of_money) {
 		this.amount_of_money = amount_of_money;
 	}

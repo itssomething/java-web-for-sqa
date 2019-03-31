@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{~/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" >
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark justify-content-between">
+	  <a class="navbar-brand" style="color: white">Navbar</a>
+	</nav>
+	<div class="container">
+	<br>
+	<h2>Loans list</h2>
+	<br>
+	<a href="/loans/new" class="btn btn-info" role="button">Add loan</a>
+	<br>
+	<table class="table" style="margin-top: 30px">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>User</th>
+				<th>Amount of money</th>
+				<th>Interest rate</th>
+				<th>Number of period</th>
+				<th>Date of disbursement</th>
+				<th>Remaining principal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="loan : ${loans}">
+				<td th:text="${loan.id}">Id</td>
+				<td th:text="${loan.user.email}">Email</td>
+				<td th:text="${loan.getStringAmountOfMoney()}"></td>
+				<td th:text="${loan.current_interest_rate}"></td>
+				<td th:text="${loan.number_of_period}"></td>
+				<td th:text="${loan.time_of_disbursement}"></td>
+				<td th:text="${loan.getStringRemainingPrincipal()}"></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>
