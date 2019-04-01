@@ -5,12 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import net.guides.springboot2.springboot2webappthymeleaf.domain.Loan;
 import net.guides.springboot2.springboot2webappthymeleaf.domain.User;
@@ -58,5 +65,29 @@ public class LoanController {
 	public String indexLoans(Model model, Loan loan) {
 		model.addAttribute("loans", loanRepo.findAll());
 		return "loans/index";
+	}
+	
+	@GetMapping("/loans/{id}/edit")
+	public String showupdateLoan(@PathVariable("id") int id, Model model) {
+	    Loan loan = loanRepo.findById(id)
+	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+	     
+	    model.addAttribute("loan", loan);
+	    return "loans/edit";
+	}
+	
+	@PostMapping("/loans/{id}/update")
+	@ResponseStatus(value=HttpStatus.OK)
+	public String updateLoan(@PathVariable("id") int id, @Valid Loan loan, 
+	  BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	    	loan.setId(id);
+	        return "loans/edit";
+	    }
+	    
+	    System.out.println(loan.getTime_of_disbursement());
+	    loanRepo.save(loan);
+	    model.addAttribute("loans", loanRepo.findAll());
+	    return "loans/index";
 	}
 }

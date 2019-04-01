@@ -26,6 +26,7 @@
 				<th>Number of period</th>
 				<th>Date of disbursement</th>
 				<th>Remaining principal</th>
+				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,6 +38,11 @@
 				<td th:text="${loan.number_of_period}"></td>
 				<td th:text="${loan.time_of_disbursement}"></td>
 				<td th:text="${loan.getStringRemainingPrincipal()}"></td>
+				<td>
+					<a th:href="@{/payment(loan_id=${loan.id}, user_id=${loan.user_id})}">Payment</a>
+					|
+					<a th:href="@{'/loans/' + ${loan.id}} + '/edit'">Edit</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>

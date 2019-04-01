@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{~/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" >
+</head>
+<body>
+	<form action="#" th:action="@{/payments/new}" th:object="${payment}" method="post">
+		
+		<label for="loan_id">Loan id</label> 
+		<input type="number" th:field="*{loan_id}" id="loan_id" > 
+		
+		
+		<label for="pay_date">Pay date</label> 
+		<input type="date" th:field="*{pay_date}" id="pay_date" > 
+		
+		<label for="money_amount">Money amount</label> 
+		<input type="number" th:field="*{money_amount}" id="money_amount" >
+		
+		<div>
+			<input class="btn btn-primary" type="submit" value="Create loan">
+		</div>
+	</form>
+	
+	<h2>Loan Info</h2>
+	
+</body>
+</html>
