@@ -2,11 +2,16 @@ package net.guides.springboot2.springboot2webappthymeleaf.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 public class Payment {
 	private Integer loan_id;
 	private Integer user_id;
 	private Float money_amount;
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date pay_date;
+	private Integer period_count;
 	
 	public Integer getLoan_id() {
 		return loan_id;
@@ -32,6 +37,10 @@ public class Payment {
 	public void setPay_date(Date pay_date) {
 		this.pay_date = pay_date;
 	}
-	
-	
+	public Integer getPeriod_count() {
+		return period_count;
+	}
+	public void setPeriod_count(Integer period_count) {
+		this.period_count = period_count;
+	}
 }
