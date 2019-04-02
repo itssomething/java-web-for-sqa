@@ -57,6 +57,7 @@ public class LoanController {
 	@PostMapping("/loans/new")
 	public String postNewLoanForm(Loan loan) {
 		loan.setRemaining_principal(loan.getAmount_of_money());
+		loan.setPeriod_count(0);
 		loanRepo.save(loan);
 		return "users/index";
 	}

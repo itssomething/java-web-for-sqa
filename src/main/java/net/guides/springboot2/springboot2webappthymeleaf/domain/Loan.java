@@ -3,6 +3,7 @@ package net.guides.springboot2.springboot2webappthymeleaf.domain;
 import java.sql.Date;
 import java.text.DecimalFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "loan")
@@ -20,11 +23,14 @@ public class Loan {
 	private Integer user_id;
 	private Integer type;
 	private float current_interest_rate;
-	private float amount_of_money;
+	private Double amount_of_money;
 	private Integer number_of_period;
 	private Integer lending_time;
 	private Date time_of_disbursement;
-	private float remaining_principal;
+	
+	@Column(name ="remaining_principal")
+	private Double remaining_principal;
+	
 	private Integer period_count;
 	
 	@ManyToOne
@@ -79,11 +85,11 @@ public class Loan {
 		this.current_interest_rate = current_interest_rate;
 	}
 
-	public float getAmount_of_money() {
+	public Double getAmount_of_money() {
 		return amount_of_money;
 	}
 
-	public void setAmount_of_money(float amount_of_money) {
+	public void setAmount_of_money(Double amount_of_money) {
 		this.amount_of_money = amount_of_money;
 	}
 
@@ -111,11 +117,11 @@ public class Loan {
 		this.time_of_disbursement = time_of_disbursement;
 	}
 
-	public float getRemaining_principal() {
+	public Double getRemaining_principal() {
 		return remaining_principal;
 	}
 
-	public void setRemaining_principal(float remaining_principal) {
+	public void setRemaining_principal(Double remaining_principal) {
 		this.remaining_principal = remaining_principal;
 	}
 
