@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class Payment {
 	private Integer loan_id;
 	private Integer user_id;
-	private Float money_amount;
+	private Double money_amount;
 	@DateTimeFormat(iso=ISO.DATE)
 	private Date pay_date;
 	private Integer period_count;
@@ -25,10 +25,10 @@ public class Payment {
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
-	public Float getMoney_amount() {
+	public Double getMoney_amount() {
 		return money_amount;
 	}
-	public void setMoney_amount(Float money_amount) {
+	public void setMoney_amount(Double money_amount) {
 		this.money_amount = money_amount;
 	}
 	public Date getPay_date() {

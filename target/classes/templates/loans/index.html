@@ -39,7 +39,7 @@
 				<td th:text="${loan.time_of_disbursement}"></td>
 				<td th:text="${loan.getStringRemainingPrincipal()}"></td>
 				<td>
-					<a th:href="@{/payment(loan_id=${loan.id}, user_id=${loan.user_id})}">Payment</a>
+					<a th:href="@{/payments/new(loan_id=${loan.id}, user_id=${loan.user_id})}">Payment</a>
 					|
 					<a th:href="@{'/loans/' + ${loan.id}} + '/edit'">Edit</a>
 				</td>

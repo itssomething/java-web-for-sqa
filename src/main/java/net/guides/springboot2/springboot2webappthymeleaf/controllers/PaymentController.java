@@ -51,15 +51,19 @@ public class PaymentController {
 	
 	@PostMapping("/payments/new")
 	public String postProcessPayment(Payment payment, Model model) {
-		System.out.print(payment.getMoney_amount());
+		System.out.println(payment.getMoney_amount());
 		
 		Optional<Loan> temp = loanRepo.findById(payment.getLoan_id());
 		Loan loan = new Loan();
 		loan = temp.get();
-//		loan.setRemaining_principal(loan.getAmount_of_money() - payment.getMoney_amount());
-//		loanRepo.save(loan);
+
+		System.out.println(loan.getRemaining_principal());
+
 	    PaymentProcessService pps = new PaymentProcessService(loanRepo, loan, payment);
-	    pps.processPayment(loan, payment);
-		return "done";
+	    if(pps.processPayment(loan, payment) == true) {
+	    	return "loans/done";
+	    }else{
+	    	return "loans/false";
+	    }
 	}
 }
