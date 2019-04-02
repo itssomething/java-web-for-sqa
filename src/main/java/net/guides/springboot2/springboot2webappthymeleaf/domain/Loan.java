@@ -25,27 +25,26 @@ public class Loan {
 	private Integer lending_time;
 	private Date time_of_disbursement;
 	private float remaining_principal;
+	private Integer period_count;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id", insertable = false, updatable = false)
 	private User user;
 	
 	public Loan() {}
-
-	public Loan(Integer id, Integer user_id, Integer type, float current_interest_rate, float amount_of_money,
-			Integer number_of_period, Integer lending_time, Date time_of_disbursement, float remaining_principal,
-			User user) {
-		super();
-		this.id = id;
-		this.user_id = user_id;
-		this.type = type;
-		this.current_interest_rate = current_interest_rate;
-		this.amount_of_money = amount_of_money;
-		this.number_of_period = number_of_period;
-		this.lending_time = lending_time;
-		this.time_of_disbursement = time_of_disbursement;
-		this.remaining_principal = remaining_principal;
-		this.user = user;
+	
+	public String getStringAmountOfMoney() {
+		DecimalFormat df = new DecimalFormat("#");
+		df.setMaximumFractionDigits(12);
+		
+		return df.format(amount_of_money);
+	}
+	
+	public String getStringRemainingPrincipal() {
+		DecimalFormat df = new DecimalFormat("#");
+		df.setMaximumFractionDigits(12);
+		
+		return df.format(remaining_principal);
 	}
 
 	public Integer getId() {
@@ -83,21 +82,7 @@ public class Loan {
 	public float getAmount_of_money() {
 		return amount_of_money;
 	}
-	
-	public String getStringAmountOfMoney() {
-		DecimalFormat df = new DecimalFormat("#");
-		df.setMaximumFractionDigits(12);
-		
-		return df.format(amount_of_money);
-	}
-	
-	public String getStringRemainingPrincipal() {
-		DecimalFormat df = new DecimalFormat("#");
-		df.setMaximumFractionDigits(12);
-		
-		return df.format(remaining_principal);
-	}
-	
+
 	public void setAmount_of_money(float amount_of_money) {
 		this.amount_of_money = amount_of_money;
 	}
@@ -134,6 +119,14 @@ public class Loan {
 		this.remaining_principal = remaining_principal;
 	}
 
+	public Integer getPeriod_count() {
+		return period_count;
+	}
+
+	public void setPeriod_count(Integer period_count) {
+		this.period_count = period_count;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -141,7 +134,5 @@ public class Loan {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 	
 }

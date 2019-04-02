@@ -14,17 +14,18 @@
 		
 		
 		<label for="pay_date">Pay date</label> 
-		<input type="date" th:field="*{pay_date}" id="pay_date" > 
+		<input type="date" name="pay_date" id="pay_date" > 
 		
 		<label for="money_amount">Money amount</label> 
 		<input type="number" th:field="*{money_amount}" id="money_amount" >
 		
 		<div>
-			<input class="btn btn-primary" type="submit" value="Create loan">
+			<input class="btn btn-primary" type="submit" value="Create payment">
 		</div>
 	</form>
 	
 	<h2>Loan Info</h2>
-	
+	<div><span>Loan id: </span><span th:text="${loan.id}"></span></div>
+	<span>Loan amount of money: </span><span th:text="${loan.amount_of_money}"></span>
 </body>
 </html>
