@@ -13,10 +13,11 @@ import java.util.List;
 
 import net.guides.springboot2.springboot2webappthymeleaf.domain.Loan;
 import net.guides.springboot2.springboot2webappthymeleaf.domain.User;
-
+@Repository
 public interface LoanRepository extends CrudRepository<Loan, Integer>{
 	
 	public List<Loan> findByUserId(int userId);
+	public Loan findFirstByOrderByIdDesc();
 	
 //	@Query("select u from User u where u.emailAddress = ?1")
 	@Transactional

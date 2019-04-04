@@ -1,6 +1,6 @@
 package net.guides.springboot2.springboot2webappthymeleaf.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.DecimalFormat;
 
 import javax.persistence.Column;
