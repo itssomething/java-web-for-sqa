@@ -6,16 +6,18 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import net.guides.springboot2.springboot2webappthymeleaf.domain.Loan;
 import net.guides.springboot2.springboot2webappthymeleaf.domain.Payment;
 import net.guides.springboot2.springboot2webappthymeleaf.repositories.LoanRepository;
-
+@Service
 public class PaymentProcessService {
+	@Autowired
 	LoanRepository loanRepo;
 	Loan loan;
 	Payment payment;
-	
+	boolean check;
 	public PaymentProcessService() {
 	}
 	
@@ -35,7 +37,7 @@ public class PaymentProcessService {
 		Double must_pay = loan_money_amount/num_of_period + remain_principal*rate*30/360;
 
 		Double pay_amount = payment.getMoney_amount();
-		
+		System.out.println(pay_amount + "pa");
 		if(pay_amount > must_pay) {
 			loan.setRemaining_principal(remain_principal - loan_money_amount/num_of_period);
 			Double extra = pay_amount - must_pay;
@@ -44,7 +46,9 @@ public class PaymentProcessService {
 		else if(pay_amount == must_pay) {
 			loan.setRemaining_principal(remain_principal - loan_money_amount/num_of_period);
 		}
-		
+		else if (pay_amount <= must_pay) {
+			check = true;
+		}
 //		loan.setRemaining_principal(loan.getRemaining_principal() - payment.getMoney_amount());
 		
 		// logic for add number of days to time_of_disbursement
@@ -70,10 +74,11 @@ public class PaymentProcessService {
 //		payment.setPay_date(date1);
 //		System.out.println(payment.getPay_date()+":;;DATE");
 		
-		
-		if(loanRepo.save(loan) != null) {
+		if(check == false) {
+			loanRepo.save(loan);	
 			return true;
-		}else {
+		}
+		else {
 			return false;
 		}
 //		return true;

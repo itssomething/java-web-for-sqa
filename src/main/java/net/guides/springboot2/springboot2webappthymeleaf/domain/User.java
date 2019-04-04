@@ -22,6 +22,7 @@ public class User implements Serializable
 	private Integer role;
 	@OneToMany(mappedBy="user")
 	private Set<Loan> loans;
+	private Double income;
 	
 	public User() {}
 
@@ -65,5 +66,11 @@ public class User implements Serializable
 		this.loans = loans;
 	}
 	
+	public void setIncome(Double income) {
+		this.income = income;
+	}
 	
+	public Double getIncome() {
+		return income;
+	}
 }

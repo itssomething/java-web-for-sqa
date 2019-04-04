@@ -23,9 +23,11 @@ import net.guides.springboot2.springboot2webappthymeleaf.domain.Loan;
 import net.guides.springboot2.springboot2webappthymeleaf.domain.User;
 import net.guides.springboot2.springboot2webappthymeleaf.repositories.LoanRepository;
 import net.guides.springboot2.springboot2webappthymeleaf.repositories.UserRepository;
+import service.LoanService;
 
 @Controller
 public class LoanController {
+	LoanService loanService = new LoanService();
 	@Autowired
 	UserRepository userRepo;
 	
@@ -58,7 +60,12 @@ public class LoanController {
 	public String postNewLoanForm(Loan loan) {
 		loan.setRemaining_principal(loan.getAmount_of_money());
 		loan.setPeriod_count(0);
-		loanRepo.save(loan);
+		Optional<User> user_temp = userRepo.findById(loan.getUser_id());
+		User user = user_temp.get();
+		LoanService loan_service = new LoanService(loan, user, userRepo);
+		if(loan_service.loanCreatable()) {
+			loanRepo.save(loan);
+		}
 		return "users/index";
 	}
 	
